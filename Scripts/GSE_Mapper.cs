@@ -1,15 +1,15 @@
 ﻿/*
- * This code is part of Arcade Car Physics for Unity by Saarg (2018)
- * 
- * This is distributed under the MIT Licence (see LICENSE.md for details)
+ * This code is part of Generative Sound Engine
  */
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System;
 using UnityEngine;
 
-namespace VehicleBehaviour {
-
-    [RequireComponent(typeof(WheelVehicle))]
+namespace GenerativeSoundEngine
+{
+    [RequireComponent(typeof(VehicleBehaviour.WheelVehicle))]
 
     public class GSE_Mapper : MonoBehaviour {
 
@@ -22,26 +22,28 @@ namespace VehicleBehaviour {
         public float maxSpeed = 5000;
 
         // Init Interface to GSE_WheelVehicle
-        private IVehicle _vehicle;
+        private IVehicle Vehicle;
 
 
         void Start () {
             
             // Get WheelVhiicle Component
-            _vehicle = GetComponent<WheelVehicle>();
+            Vehicle = GetComponent< VehicleBehaviour.WheelVehicle >();
 
         }
         
         void Update () {
 
             // Get emitter from FMOD event
-            var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+            // var emitter = GetComponent<FMODUnity.StudioEventEmitter>();
 
             // map vehicle data to FMOD emitter
             // Speed
-            float effectiveSpeed = Mathf.Lerp(minSpeed, maxSpeed, Mathf.Abs(_vehicle.Speed) / flatoutSpeed);
-            emitter.SetParameter("RPM", effectiveSpeed);
-        
+            // float effectiveSpeed = Mathf.Lerp(minSpeed, maxSpeed, Mathf.Abs(Vehicle.Speed) / flatoutSpeed);
+            // emitter.SetParameter("RPM", effectiveSpeed); // Do When FMOD is configured
+            string log = DateTime.Now + ", " + Vehicle.Speed.ToString() + ";" + System.Environment.NewLine;
+            File.AppendAllText(@"D:\logfile.txt", log);
+
         }
     }
 }
