@@ -3,32 +3,32 @@
  */
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System;
+//using System.IO;
+//using System;
 using UnityEngine;
 
 namespace GenerativeSoundEngine
 {
-    [RequireComponent(typeof(VehicleBehaviour.WheelVehicle))]
+    // [RequireComponent(typeof(VehicleBehaviour.WheelVehicle))]
 
     public class GSE_Mapper : MonoBehaviour {
 
         // Set GUI elements for tuning values
 
         // Speed
-        [Header("Speed parameter")]
-        public float flatoutSpeed = 300.0f;
-        public float minSpeed = 0;
-        public float maxSpeed = 5000;
+        // [Header("Speed parameter")]
+        // public float flatoutSpeed = 300.0f;
+        // public float minSpeed = 0;
+        // public float maxSpeed = 5000;
 
         // Init Interface to GSE_WheelVehicle
-        private IVehicle Vehicle;
+        // private IVehicle Vehicle;
 
 
         void Start () {
             
             // Get WheelVhiicle Component
-            Vehicle = GetComponent< VehicleBehaviour.WheelVehicle >();
+            // Vehicle = GetComponent< VehicleBehaviour.WheelVehicle >();
 
         }
         
@@ -41,8 +41,8 @@ namespace GenerativeSoundEngine
             // Speed
             // float effectiveSpeed = Mathf.Lerp(minSpeed, maxSpeed, Mathf.Abs(Vehicle.Speed) / flatoutSpeed);
             // emitter.SetParameter("RPM", effectiveSpeed); // Do When FMOD is configured
-            string log = DateTime.Now + ", " + Vehicle.Speed.ToString() + ";" + System.Environment.NewLine;
-            File.AppendAllText(@"D:\logfile.txt", log);
+            // string log = DateTime.Now + ", " + Vehicle.Speed.ToString() + ";" + System.Environment.NewLine;
+            // File.AppendAllText(@"D:\logfile.txt", log);
 
         }
     }
